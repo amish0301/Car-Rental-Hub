@@ -10,8 +10,14 @@ export interface CustomButtonType {
     isDisabled?: boolean;
 }
 
+export interface optionsType {
+    title: string;
+    value: string;
+}
+
 export interface CustomFilterType {
     title: string;
+    options: optionsType[]
 }
 
 export interface SearchManufacturerType {
@@ -29,6 +35,20 @@ export interface CarCardType {
     fuel_type: string;
     highway_mpg: number;
     make: string;
+    year: number;
     model: string;
     transmission: string;
+}
+
+export interface FilterType {
+    manufacturer: string,
+    year: number,
+    fuel: string,
+    limit: number,
+    model: string,
+}
+
+export interface ShowMoreProps {
+    pageNumber: number;
+    isNext: boolean;
 }

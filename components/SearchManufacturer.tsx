@@ -39,11 +39,8 @@ const SearchManufacturer = ({
           <Combobox.Input
             className="search-manufacturer__input"
             placeholder="eg. Volkswagen"
-            displayValue={(manufacturer: string) =>
-              manufacturer
-            }
+            displayValue={(manufacturer: string) => manufacturer}
             onChange={(e) => setQuery(e.target.value)}
-            value={query}
           />
 
           {/* Transition for displaying the options */}
@@ -57,7 +54,7 @@ const SearchManufacturer = ({
             <Combobox.Options>
               {filteredManufacturers.length === 0 && query !== "" ? (
                 <Combobox.Option
-                  className="relative cursor-default select-none py-2 px-4 text-gray-700 bg-red-300 font-semibold"
+                  className="relative cursor-default select-none py-2 px-4 text-gray-700 bg-red-300 font-semibold overflow-hidden"
                   value={query}
                 >
                   Nothing Found!!

@@ -4,6 +4,7 @@ import { CarCardType } from "@/types";
 import Image from "next/image";
 import { Fragment } from "react";
 import { Dialog, Transition } from "@headlessui/react";
+import { generateCarImageUrl } from "../utils";
 
 interface CarDetailsType {
   isOpen: boolean;
@@ -56,7 +57,7 @@ const CarDetails = ({ isOpen, closeModal, car }: CarDetailsType) => {
                 <div className="flex-1 flex flex-col gap-3">
                   <div className="relative w-full h-40 bg-pattern bg-cover bg-center rounded-lg">
                     <Image
-                      src="/hero.png"
+                      src={generateCarImageUrl(car)}
                       fill
                       priority
                       alt="car model"
@@ -67,7 +68,25 @@ const CarDetails = ({ isOpen, closeModal, car }: CarDetailsType) => {
                   <div className="flex gap-3">
                     <div className="flex-1 relative w-full h-24 bg-primary-blue-100 rounded-lg">
                       <Image
-                        src="/hero.png"
+                        src={generateCarImageUrl(car, '29')}
+                        fill
+                        priority
+                        alt="car model"
+                        className="object-contain"
+                      />
+                    </div>
+                    <div className="flex-1 relative w-full h-24 bg-primary-blue-100 rounded-lg">
+                      <Image
+                        src={generateCarImageUrl(car, '33')}
+                        fill
+                        priority
+                        alt="car model"
+                        className="object-contain"
+                      />
+                    </div>
+                    <div className="flex-1 relative w-full h-24 bg-primary-blue-100 rounded-lg">
+                      <Image
+                        src={generateCarImageUrl(car, '13')}
                         fill
                         priority
                         alt="car model"
@@ -75,25 +94,27 @@ const CarDetails = ({ isOpen, closeModal, car }: CarDetailsType) => {
                       />
                     </div>
                   </div>
+                  
                 </div>
 
                 {/* Additional Content */}
                 <div className="flex-1 flex flex-col gap-2">
-                    <h2 className="text-xl font-semibold">{car.make} {car.model}</h2>
-                    <div className="mt-3 flex flex-wrap gap-4">
-                        {
-                            Object.entries(car).map(([key, value]) => (
-                                <div className="flex justify-between gap-5 w-full text-right" key={key}>
-                                    <h4 className="text-gray-400 capitalize">
-                                        {key.split("_").join(" ")}
-                                    </h4>
-                                    <p className="text-black-400 font-semibold">
-                                        {value}
-                                    </p>
-                                </div>
-                            ))
-                        }
-                    </div>
+                  <h2 className="text-xl font-semibold">
+                    {car.make} {car.model}
+                  </h2>
+                  <div className="mt-3 flex flex-wrap gap-4">
+                    {Object.entries(car).map(([key, value]) => (
+                      <div
+                        className="flex justify-between gap-5 w-full text-right"
+                        key={key}
+                      >
+                        <h4 className="text-gray-400 capitalize">
+                          {key.split("_").join(" ")}
+                        </h4>
+                        <p className="text-black-400 font-semibold">{value}</p>
+                      </div>
+                    ))}
+                  </div>
                 </div>
               </Dialog.Panel>
             </Transition.Child>

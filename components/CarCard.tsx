@@ -6,7 +6,7 @@ import Image from "next/image";
 import CustomButton from "./CustomButton";
 import CarDetails from "./CarDetails";
 
-const CarCard = ({ car }: CarCardType) => {
+const CarCard = ({ car }: { car: CarCardType }) => {
   const { city_mpg, make, model, transmission, drive, year } = car;
   const carRent = calculateCarRent(city_mpg, year);
   const [isOpen, setIsOpen] = useState(false);
@@ -35,7 +35,7 @@ const CarCard = ({ car }: CarCardType) => {
         />
       </div>
 
-      <div className="relative flex w-full mt-2">
+      <div className="relative flex gap-4 w-full mt-2">
         <div className="flex group-hover:invisible w-full justify-between text-gray">
           <div className="flex flex-col justify-center items-center gap-2">
             <Image
@@ -70,7 +70,7 @@ const CarCard = ({ car }: CarCardType) => {
             <p className="text-[14px]">{city_mpg} MPG</p>
           </div>
         </div>
-    
+
         <div className="car-card__btn-container">
           <CustomButton
             title="View More"
@@ -82,7 +82,11 @@ const CarCard = ({ car }: CarCardType) => {
         </div>
       </div>
 
-      <CarDetails isOpen={isOpen} closeModal={() => setIsOpen(false)} car={car}/>
+      <CarDetails
+        isOpen={isOpen}
+        closeModal={() => setIsOpen(false)}
+        car={car}
+      />
     </div>
   );
 };
